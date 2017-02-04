@@ -1,0 +1,7 @@
+
+ylim(x, y) pas obligé, sauf pour comparer deux histogrammes
+
+x <- read.table("histo_tps_cpu_opt.txt", header=true)
+pdf("histo_tps_cpu_opt.pdf")
+hist(x$V1 ,main="Histogram des Temps CPU du programme de base", xlab="Temps (ms)", border="black", col="gray", breaks=20, xlim=c(0, 6000))
+dev.off()

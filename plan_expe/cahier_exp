@@ -1,0 +1,6 @@
+Mesurer la complexité de l'algo en fonction de n, m, k sur count3.
+n : nombre de mots dans le fichiers 
+m : nombre de mots en sortie
+k : fenêtre de lecture
+
+Objectif : minimiser count3

@@ -1,0 +1,185 @@
+
+
+\documentclass[a4paper,11pt]{article}
+\usepackage[latin1]{inputenc}
+\usepackage[cyr]{aeguill}
+\usepackage[margin=0.8in]{geometry}
+\usepackage{xspace}
+\usepackage{amsmath}
+\usepackage[english,francais]{babel}
+\usepackage{url}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{xcolor}
+\usepackage{listings} % pour le code
+\usepackage{graphicx} % pour les figures
+
+% Redefinition de la commande \url pour pour l'utiliser dans un document en français
+% sans avoir de problème avec les deux-points
+% (voir http://perso.mines-albi.fr/~gaborit/latex/latex-in-french.html)
+\let\urlorig\url
+\renewcommand{\url}[1]{%
+  \begin{otherlanguage}{english}\urlorig{#1}\end{otherlanguage}%
+}
+\renewcommand{\contentsname}{Sommaire} % si tableofcontents au début
+\newcommand{\Numero}{\No}
+\newcommand{\numero}{\no}
+
+
+% Pour inclure joliment des scripts R
+\lstset{
+language=R,
+basicstyle=\scriptsize\ttfamily,
+commentstyle=\ttfamily\color{gray},
+numbers=left,
+numberstyle=\ttfamily\color{gray}\footnotesize,
+stepnumber=1,
+numbersep=5pt,
+backgroundcolor=\color{white},
+showspaces=false,
+showstringspaces=false,
+showtabs=false,
+frame=single,
+tabsize=2,
+captionpos=b,
+breaklines=true,
+breakatwhitespace=false,
+title=\lstname,
+escapeinside={},
+keywordstyle={},
+morekeywords={}
+}
+
+\begin{document}
+
+\title{Compte-rendu du TP \\``Evaluation empirique d'un programme''}
+\author{Nom, prénom et parcours de chaque étudiant}
+\date{\today}
+\maketitle
+
+\tableofcontents
+\newpage
+
+Vous devrez rendre ce rapport complété au format PDF exclusivement, en l'uploadant dans la colonne RenduTPEvalPerf de l'UE M2COM dans Tomuss (\url{http://tomuss.univ-lyon1.fr}), avant le 10 février à 23h59. N'envoyez pas d'email. Ne rendez pas le code source Latex. Ne rendez pas non plus d'autres fichiers (données brutes sous Excel, figures, code C, etc). Les figures pertinentes et les lignes de code que vous avez modifiées devront être incluses dans le rapport PDF. La taille maximale de ce rapport est de 15 pages.
+
+\section{Présentation sommaire du programme à évaluer}
+
+\subsection{Données à fournir en entrée}
+
+\subsection{Données fournies en sortie}
+
+\subsection{Algorithme}
+
+Décrivez en français ce que vous avez compris de l'algorithme. Expliquez entre autres ce que représentent $n$, $m$, et $k$, et en quoi l'algorithme est stochastique. Vous pouvez en plus écrire l'algorithme sous forme de pseudocode (bonus). Voir  \url{https://en.wikibooks.org/wiki/LaTeX/Algorithms#Typesetting_using_the_algorithmic_package} pour plus d'informations.
+
+\begin{algorithm}
+\caption{<your caption for this algorithm>}
+\label{<your label for references later in your document>}
+\begin{algorithmic}
+% A remplacer par votre pseudocode
+\If {$i\geq maxval$}
+    \State $i\gets 0$
+\Else
+    \If {$i+k\leq maxval$}
+        \State $i\gets i+k$
+    \EndIf
+\EndIf
+\end{algorithmic}
+\end{algorithm}
+
+
+\section{Premières mesures du temps d'exécution}
+
+\subsection{Paramètres utilisés dans toute cette section}
+Indiquez ici les valeurs de $m$ et $k$ avec lesquelles vous avez travaillé pour cette section. Indiquez également le ou les fichiers d'entrée utilisé(s) et la ou les valeur(s) de $n$ correspondantes. Indiquez également votre environnement de travail : système d'exploitation, compilateur (version), options de compilation, processeur, mémoire vive, etc. 
+
+Pour chacune des sous-sections suivantes, indiquez le nombre de runs effectués pour soutenir vos résultats.
+
+\subsection{Mise en évidence de la stochasticité de l'algorithme}
+Montrez la variabilité obtenue dans les temps d'exécution en incluant un histogramme du temps CPU dans votre rapport (Figure \ref{fig:histo-variabilite}). Quantifiez cette variabilité en indiquant l'écart-type de ce temps d'exécution (sans oublier de préciser le nombre de runs sur lequel cet écart-type a été calculé). 
+
+\begin{figure}[htbp]
+\begin{center}
+% remplacez par votre figure 
+\includegraphics[width=6cm]{Black_cherry_tree_histogram.pdf}
+\caption{Black cherry tree histogram. Source: Wikimedia Commons.}
+\label{fig:histo-variabilite}
+\end{center}
+\end{figure}
+
+
+Puis décrivez la manipulation que vous avez effectuée pour montrer qu'une grande part de cette variabilité provient de la stochasticité de l'algorithme. 
+
+
+\subsection{Influence de la charge système}
+En vous appuyant sur le cours, expliquez pourquoi le temps CPU, bien que fait pour être le plus indépendant possible de la charge système, peut tout de même être influencé par la charge système en pratique. Décrivez l'expérience que vous avez effectuée pour tester cet effet et synthétisez-en les résultats, en appuyant vos affirmations sur des chiffres. 
+
+\subsection{Influence des options de compilation}
+Quantifiez le gain de performance obtenu en passant d'une compilation en mode debug à une compilation en mode release (option d'optimisation) : indiquez le pourcentage d'amélioration ainsi que la façon dont vous l'avez calculé (formule, mais aussi nombre de runs, etc).
+
+\section{Opération dominante}
+
+\subsection{Paramètres utilisés dans toute cette section}
+
+\subsection{Identification de l'opération dominante}
+Indiquez le ou les outils de profilage utilisés pour trouver l'opération dominante. Pour appuyer votre réponse, vous pouvez copier-coller un extrait du rapport de profilage, ou inclure une capture d'écran comme figure.
+
+\subsection{Comptage des appels à l'opération dominante}
+Indiquez ici les lignes de code que vous avez modifiées pour compter les appels à l'opération dominante.
+
+\begin{lstlisting}[language=C]
+/* A remplacer par les passages que vous avez modifiés */
+int i = 0;
+float v = 5.9;
+\end{lstlisting}
+
+\section{Analyse de l'expérience fournie par R. Thion}
+
+Rappelez le ou les objectifs de cette expérience (voir la partie 4 du sujet de TP) : à quelle(s) question(s) va-t-on répondre ?
+
+\subsection{Plan d'expérience}
+Rappelez ici le plan de l'expérience qui vous a été fournie :
+\begin{itemize}
+\item Variables mesurées
+\item Paramètres que l'on a fait varier, et les valeurs choisies (sans oublier les fichiers d'entrée).
+\item Mode de combinaison des valeurs de paramètres (par exemple : full factorial design, si toutes les combinaisons possibles ont été testées)
+\item Nombre de runs effectués pour chaque combinaison de valeurs de paramètre
+\item Environnement de test
+\end{itemize}
+
+\subsection{Analyse des résultats}
+Synthétisez les résultats obtenus à l'aide de trois figures maximum. Commentez-les et indiquez dans le texte principal les coefficients de détermination des régressions linéaires ($R^2$), les coefficients de corrélation et leurs p-values, etc.  Concluez sur les questions posées au début de cette section.
+
+
+\section{Conception et réalisation de votre expérience}
+Indiquez ici le ou les objectifs de votre propre expérience (voir la partie 4 du sujet de TP, éventuellement enrichie de vos propres questions additionnelles).
+
+\subsection{Plan d'expérience}
+Décrivez ici votre plan d'expérience :
+\begin{itemize}
+\item Variables mesurées
+\item Paramètres que vous avez fait varier, et les valeurs choisies (justifiez). On peut considérer ici que les fichiers d'entrée font partie des paramètres, donc inpliquez lesquels vous avez choisis et expliquez pourquoi.
+\item Mode de combinaison des valeurs de paramètres (par exemple : full factorial design, si toutes les combinaisons possibles ont été testées)
+\item Nombre de runs effectués pour chaque combinaison de valeurs de paramètre
+\item Environnement de test
+\end{itemize}
+
+Si vous avez utilisé un outil de type ``cahier de laboratoire'' (papier ou numérique), indiquez-le ici, en incluant une figure (scan ou copie d'écran).
+
+\subsection{Analyse des résultats}
+Synthétisez les résultats obtenus à l'aide de trois figures maximum, et commentez-les. Les relations obtenues correspondent-elles à ce qu'on attend étant donné l'algorithme ? Quelle est l'influence de chaque paramètre ? Obtenez-vous les mêmes résultats qu'avec l'expérience fournie ?
+
+\section{Annexe : Code réalisé pour le tutoriel sur les tests d'hypothèse}
+
+Copiez-collez ci-dessous votre script \texttt{2-test-hyp-maison.R} complété. 
+
+\begin{lstlisting}[language=R]
+% A remplacer par votre code
+x<-runif(10, 0.0, 1.0)
+mean(x)
+\end{lstlisting}
+
+Incorporez également les histogrammes obtenus sous forme de figures. Indiquez vos conclusions sur les deux paires d'échantillons. 
+
+
+\end{document}
