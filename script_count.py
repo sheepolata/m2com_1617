@@ -5,14 +5,14 @@ import sys
 
 def format_count_words(filename, out_file):
 	fic     = open(filename, "r")
-	fic_res = open(out_file, "w")
+	fic_res = open(out_file, "a")
 
 	tmp = []
 	for line in fic:
 		nb = line.split(' ')[0]
 		tmp.append(nb)
 
-	fic_res.write("n\n")
+	# fic_res.write("n\n")
 	for i in range(len(tmp)):
 		fic_res.write(tmp[i])
 		fic_res.write('\n')
@@ -22,7 +22,7 @@ def format_count_words(filename, out_file):
 
 def count_sys_time(filename, out_file):
 	fic     = open(filename, "r")
-	fic_res = open(out_file, "w")
+	fic_res = open(out_file, "a")
 
 	user_time = []
 	sys_time  = []
@@ -44,7 +44,7 @@ def count_sys_time(filename, out_file):
 
 	avg = 0.
 	nb  = 0.
-	fic_res.write("user,sys,real\n")
+	# fic_res.write("user,sys,real\n")
 	for i in range(len(total_time)):
 		fic_res.write(str(user_time[i]) + "," + str(sys_time[i]) + "," + str(real_time[i]))
 		fic_res.write('\n')

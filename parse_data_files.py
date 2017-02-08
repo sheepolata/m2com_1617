@@ -18,7 +18,7 @@ def concat_all_files(all_files, file_out):
 	for name in all_files:
 		files_openned.append(open(name, "r"))
 
-	lines = getlines(files_openned)
+	# lines = getlines(files_openned)
 
 	while True:
 		lines = getlines(files_openned)
@@ -38,12 +38,12 @@ def concat_one_book(book, files_in, file_out):
 
 	res = open(file_out, "w")
 
-	res.write("bookname,n,k,m,count1,count2,count3,user,sys,real\n")
+	# res.write("bookname,n,k,m,count1,count2,count3,user,sys,real\n")
 
-	c = counters.readline()
-	nbw = nbwords.readline()
-	p = param.readline()
-	t = time.readline()
+	# c = counters.readline()
+	# nbw = nbwords.readline()
+	# p = param.readline()
+	# t = time.readline()
 
 	while True:
 		c = counters.readline()
@@ -65,13 +65,28 @@ def concat_one_book(book, files_in, file_out):
 
 if __name__ == '__main__':
 	pre = "plan_expe/"
-	books = ["don-quixote", "madame-bovary", "zadig"]
+	# pre_books = ["don-quixote"]
+	pre_books = ["don-quixote", "madame-bovary", "zadig"]
+	books = []
+	ks = [2, 3, 4, 5, 6, 7]
+	ms = [1000, 10000, 100000, 500000]
+	for pb in pre_books:
+		for k in ks:
+			for m in ms:
+				books.append(pb+str(k)+str(m))
 	ext = ["_counters.txt", "_nb_words.txt", "_param.txt", "_timetable.txt"]
 	files = []
 	for i in range(len(books)):
 		tmp = []
 		for j in range(len(ext)):
 			tmp.append(pre + books[i] + ext[j])
-		res = concat_one_book(books[i], tmp, pre + books[i]+"_data.csv")
+		b = ""
+		if books[i][:3] == "don" :
+			b = "don-quixote"
+		elif books[i][:3] == "mad" :
+			b = "madame-bovary"
+		else :
+			b = "zadig"
+		res = concat_one_book(b, tmp, pre + books[i]+"_data.csv")
 		files.append(res)
-	concat_all_files(files, pre+"all_data.csv")
+	concat_all_files(files, pre+"data_final.csv")
