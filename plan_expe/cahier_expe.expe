@@ -9,3 +9,9 @@ Faire tourner l'algorithme 100 fois pour chaque combinaisons de paramètres parm
 n : nb_mot_don-quixote, nb_mots_madame-bovary, nb_mots_zadig
 m : 1000, 10000, 100000, 500000
 k : 2, 3, 4, 5, 6, 7
+
+Avec trois paramètres extérieurs : 
+  Sans optimisation
+  avec l'option -O3 de gcc
+  sans optimisation et avec "stress -m 2 -c 2 -d 2"
+  avec l'option -O3 de gcc et avec "stress -m 2 -c 2 -d 2"
