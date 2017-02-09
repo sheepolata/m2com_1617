@@ -5,7 +5,7 @@ k : fenêtre de lecture
 
 Objectif : minimiser count3
 
-Faire tourner l'algorithme 10 fois pour chaque combinaisons de paramètres parmis les suivants :
+Faire tourner l'algorithme 100 fois pour chaque combinaisons de paramètres parmis les suivants :
 n : nb_mot_don-quixote, nb_mots_madame-bovary, nb_mots_zadig
-m : 1000, 10000, 100000, 500000 (500000 a voir selon la machine)
+m : 1000, 10000, 100000, 500000
 k : 2, 3, 4, 5, 6, 7
