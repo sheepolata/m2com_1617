@@ -1,5 +1,5 @@
 #!/bin/bash
-gcc -o markov_counters -O3 markov.c
+gcc -o markov_counters markov.c
 
 exp='plan_expe/'
 
