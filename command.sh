@@ -1,5 +1,5 @@
 #!/bin/bash
-gcc -o markov_counters markov.c
+gcc -o markov_counters -O3 markov.c
 
 exp='plan_expe/'
 
@@ -65,8 +65,12 @@ do
 	done
 done
 
+echo "Traitement Python en cours..."
+
 tmp="*.txt"
 tmp2="*_data.csv"
 python parse_data_files.py
 rm $exp$tmp
 rm $exp$tmp2
+
+echo "Traitement Python Terminé !"
