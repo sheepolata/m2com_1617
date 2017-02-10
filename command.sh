@@ -1,21 +1,10 @@
 #!/bin/bash
+#Pour lancer avec l'optimisation de gcc
 gcc -o markov_counters -O3 markov.c
+#Pour lancer sans l'optimisation de gcc
+#gcc -o markov_counters markov.c
 
 exp='plan_expe/'
-
-# if [ "$1" == "" ]; then
-# 	echo "No file name !!"
-# 	exit 150
-# fi
-
-# filein=$1
-# infile_alg=$filein'.txt'
-# book=$1
-# rawtime=$book'_rawtime.txt'
-# countersfile=$exp$book'_counters.txt'
-# nbwordsraw=$exp$book'_nb_words_raw.txt'
-# nbwordsprocessed=$exp$book'_nb_words.txt'
-# datafile=$exp$book'_param.txt'
 res_algo='resultat.txt'
 if [ "$1" != "" ]; then
     it=$1
@@ -23,11 +12,7 @@ else
     it=100
 fi
 
-#k=3
-#m=1000
-
 truncate -s 0 "plan_expe/all_data.csv"
-
 
 for name in "madame-bovary" "zadig" "don-quixote"
 do
@@ -56,8 +41,9 @@ do
 				wc -w $name'.txt' &>> $nbwordsraw
 				echo "$k,$m" &>> $datafile
 			done
-
+			#Script python qui traite les fichiers de temps et de "count" pour les rendre utilisable
 			python script_count.py $rawtime $exp$prefix'_timetable.txt' $nbwordsraw $nbwordsprocessed
+			#Nettoyage des dossiers
 			rm $rawtime
 			rm $nbwordsraw
 			sleep 0.1
@@ -67,9 +53,12 @@ done
 
 echo "Traitement Python en cours..."
 
+#Script pyhton qui permet de construire le fichiers csv final contenant toutes les informations.
+python parse_data_files.py
+
+#Nettoyage des dossiers
 tmp="*.txt"
 tmp2="*_data.csv"
-python parse_data_files.py
 rm $exp$tmp
 rm $exp$tmp2
 
